@@ -1,0 +1,34 @@
+<main role="main">
+  <div class="container">
+    <div *ngIf="!isDone">
+      <div class="row ">
+        <div class="text-center">
+          <div class="spinner-border"></div>
+          <p class="text-center">Loading...</p>
+        </div>
+      </div>
+    </div>
+    <div class="container" *ngIf="isDone">
+      <!-- <div class="row mt-5">
+        <ng-container>
+          <app-post  *ngFor="let movie of movies;let i = index;" [post]="movie"></app-post>
+        </ng-container>
+      </div> -->
+    
+
+      <div class="row mt-5">
+        <ng-container *ngFor="let movie of movies;let i = index;">
+          <div [ngClass]="{'col-md-6':!movie.detail,'col-md-12':movie.detail}">
+            <app-post [post]="movie" [index]="i" (hideDetails)="hideDetails($event)" (gotoDetails)="gotoDetails($event)"></app-post>
+          </div>
+          <div
+            class="container mt-5"
+            *ngIf="isDone && (!movies || !movies.length)"
+          >
+            <div class="error">Not Found</div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</main>

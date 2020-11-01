@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="row no-gutters">
+    <div [ngClass]="{'col-md-4':!post.detail,'col-md-2':post.detail}">
+      <img
+        class="card-img"
+        src="{{ post?.Poster }}"
+        alt="{{ post?.Title }}"
+      />
+    </div>
+    <div class="col-7">
+      <div class="card-body">
+        <h5 class="card-title">{{ post?.Title }}</h5>
+        <div>
+            <span *ngIf="post?.detail?.Metascore && post?.detail?.Metascore !== 'N/A'">{{ post?.detail?.Metascore }}</span>
+            <h3 *ngIf="post?.detail?.imdbRating && post?.detail?.imdbRating !== 'N/A'">{{ post?.detail?.imdbRating }}</h3>
+            <span *ngIf="post?.detail?.Rated && post?.detail?.Rated !== 'N/A'">Rated: {{ post?.detail?.Rated }} </span><br />
+            <span *ngIf="post?.detail?.Runtime && post?.detail?.Runtime !== 'N/A'">Runtime : {{ post?.detail?.Runtime }} </span><br />
+            <span *ngIf="post?.detail?.Genre && post?.detail?.Genre !== 'N/A'">Genre: {{ post?.detail?.Genre }} </span> <br />
+            <span *ngIf="post?.detail?.Language && post?.detail?.Language !== 'N/A'">Language: {{ post?.detail?.Language }} </span> <br />
+            <span *ngIf="post?.detail?.Released && post?.detail?.Released !== 'N/A'">Released: {{ post?.detail?.Released }}</span> <br />
+            <span *ngIf="post?.detail?.Country && post?.detail?.Country !== 'N/A'">Country: ({{ post?.detail?.Country }}) </span> <br />
+            <a class="btn btn-primary btn-detail" *ngIf="!post?.detail" (click)="gotoDetails.emit({id:post?.imdbID,index:index})">Detail</a>
+            <a class="btn btn-primary btn-detail" *ngIf="post?.detail" (click)="hideDetails.emit(index)">Hide</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
